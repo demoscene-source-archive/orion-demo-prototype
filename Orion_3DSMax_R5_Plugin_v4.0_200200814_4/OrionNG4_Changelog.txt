@@ -1,0 +1,156 @@
+15/08/2002:
+	* Linear controller is now rendered correctly.
+
+14/08/2002:
+	* Fixed bug while exporting multitextured maps
+
+12/08/2002:
+	* Updated safe frame for preview. Now border is the outter yellow frame.
+
+11/08/2002:
+	* Recompiled for Max5
+
+08/08/2002:
+	* Fixed bug where setting a multi-sub material on a meshe by only using 
+	  one sub caused crash.
+
+22/07/2002:
+	* Fixed cases where skinned meshes were hidden incorrectly.
+	* Updated Preview Window ratio to match 0.75
+
+20/07/2002:
+	* Object parameters can now be set by using the "User Defined" Tab 
+	  in objet property dialog. Syntax is [Property]=[Value].
+	  Example:
+		Alpha=1
+		NoCull=1
+	  
+	  All existing flags can be set using this way.          
+          
+	* Added Sprite support, set by Sprite=1
+	* Added the ability to change the Alpha Operation and arguments. (Default first)
+	 	- AlphaOp=[Arg1|Add|Subtract|Modulate]
+		- AlphaArg1=[Diffuse|Texture|Previous]
+		- AlphaArg2=[Texture|Diffuse|Previous]
+	  These flags are in use when flags Alpha, AlphaSrc or AlphaMap are set to 1.	 
+
+
+08/04/2002:
+	* Added support for Multi/Sub object materials.
+	* Added support for TGA Fileformat.
+	* Added support for GIF Fileformat.
+
+24/03/2002:
+	* Fixed exporting static rolling for cameras.
+	* Fixed Envmap flag, borken due to *really* old crappy fix.
+	* Fixed invalid texture size for procedural texures.
+
+04/03/2002:
+	* Added groups/helpers support in hierarchical relations.
+	* Preview always shown even if gfx cannot be loaded.
+	* Fixed bug in hierarchy support. Some nodes were not exported.
+	* LogWindow position is now saved.
+	* Fixed bones parsing, where meshes hidden randomly.
+
+01/03/2002:
+	* Fixed incorrect sampling
+
+28/02/2002:
+	* Fixed bones were incorrectly shown.
+	* New MDL format, version checking improved.
+	* Changed output dump format to Xml. Use XSL&JS files provided to view.
+
+08/01/2002:
+	* Miscanellous fixes about bones/skinning.
+	* Some speed improvements.
+
+22/08/2001:
+	* Updated texture loader, now faster
+	* Updated Scene loader for preview, now loads faster.
+	* Fixed ordering bug with alpha mapped objects
+
+15/08/2001:
+	* Added .AlphaSrc modifier for alpha objects.
+		- .Alpha is additive alpha up to 50% visible opacity
+		- .SrcAlpha is normal alpha up to complete opacity
+
+		Both are modified by the opacity parameter of the applied material.
+	* Fixed Video memory leak.
+
+11/08/2001:
+	* Some fixes about materials
+	* Fixed bug with object not containing UVWMap coordinates
+	* Fixed clipping bug with really large flat surfaces
+
+08/08/2001:
+	* Fixed infinite loop where object can be parent of itself ?!!
+
+07/08/2001:
+	* Added ability to change motion blur on preview.
+	* Rebuild keyframing system, now more effective.
+
+24/07/2001:
+	* Some hierarchy fixes.
+	* Speed up rendering.
+
+22/07/2001:
+	* Fixed vertex color bug when using sharp color changes from face to face.
+	* LogWindow is no longer appearing if "Show log window" is unchecked.
+	* Fixed memory leaks, now Preview can be launched indefinitely.
+	* Upgraded hierarchy, now lights can be parents of any object. (Lights included)
+	* Adding UVWMap modifier is no longer needed to export meshes.
+	* Fixed specular lighting in materials. Glossiness and Specular Level are
+          now exported.
+	* Material parameters "Wire" and "Faceted" are now exported. Only used in
+          case of dynamic lighting.
+	* Temporary preview file is now placed in %maxdir%\Meshes
+	* Fixed bug with static cameras
+	* Removed Attenuation0 and Specular parameters from lights. Now used from
+          Max parameters.
+
+
+04/07/2001:
+	* Fixed bug with some hierachical links.
+	* Added Bones/Skinning support. Can use IK links.
+
+28/05/2001:
+	* Added realtime modification of Near/Far planes with Slidebars during scene preview.
+	* Fixed bug with rotations sometime causing animated objects to disappear.
+
+27/05/2001:
+	* Fixed Animated hierarchy bugs. Now fully functional.
+	* Fixed bug with materials with no textures.
+	* Plugin crashes do not crash MAX.
+
+20/04/2001:
+	* Fixed some material properties under dynamic lighting. (Diffuse & ambient
+ 	  components now correctly rendered)
+
+
+	* Added better support for dynamic lighting. Some parameters can be
+	  specified in "User Defined" tab in Light Object property window.
+ 	  Here is a sample :
+
+		Specular = (0, 1, 0)
+		Attenuation0 = 1
+		Attenuation1 = .5
+		Attenuation2 = .25
+
+	* Added support for dynamic textures. Effect to apply can be specified
+	  in "Material Editor" on Map name. Effect applied is sized to the map file.
+	  Texture can be named as follows :
+
+		Map #1.fx=Fire
+
+	  Effect name is case sensitive. Currently suported effects are :
+
+		* Fire
+		* Plasma
+
+	* Added log window. Window is now sizeable.
+	* Texture default directories are now also taken from Max's defaults.
+	* Texture compression is now available in DX8 implementation.
+	* Cubic Environnement mapping is available through ".Mirror" flag on objects.
+	* Cameras can now be static. (i.e. no keyframes)
+	* Hotspot, Fallof, and color animation is now available for
+	  Omni/Spot dynamic lights.

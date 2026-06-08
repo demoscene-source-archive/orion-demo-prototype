@@ -1,0 +1,152 @@
+<html>
+	<head>
+		<meta name="vs_showGrid" content="True">
+		<title>Orion! Library : 3DEngine Flags v4.0</title>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+	</head>
+	<body bgcolor="#383838">
+		<p><font color="#ffffff" size="5">Orion! Library : 3DEngine Flags description (Version 
+				4.x)<br>
+			</font><font color="#ffffff" size="2"><em>Last Update : 01/06/2002</em></font></p>
+		<P><font color="#ffffff" size="4"><em><strong></strong></em></font>&nbsp;</P>
+		<P><FONT color="#ffffff" size="4"><EM><STRONG>General Guidelines:</STRONG></EM></FONT><font color="#ffffff"><br>
+				<br>
+				- Objects can have no textures. They are rendered as white, so they can take a 
+				full color with associated VertexColor.<br>
+				- Do not use more than two or three simultaneous Dynamic light.<br>
+				- Prefer using models &gt; 200 Polygons. (&gt;1000 polygons is good, MAXIMUM IS 
+				65535 Vertices / Meshe)<br>
+				- Prefer having between 10.000 and 15.000 simultaneous visible polygons. More 
+				is a frame rate killer</font></P>
+		<P><FONT color="#ffffff"><STRONG><EM><FONT size="4"></FONT></EM></STRONG></FONT>&nbsp;</P>
+		<P><FONT color="#ffffff"><STRONG><EM><FONT size="4">Max4 Supported Features :</FONT></EM></STRONG></P>
+		<P>- Multi-Sub materials are supported. Use with care, try to avoid small subset of 
+			faces.<BR>
+			- Hierarchy between meshes, lights and helpers<BR>
+			- Color keying for lights<BR>
+			- Texture Alphamapping/Environement Mapping<BR>
+			- Bones / Skinning<BR>
+			- Material parameters are used in case of dynamic ligthing<BR>
+			</FONT></P>
+		<P><FONT color="#ffffff" size="4"><EM><STRONG>Flag Description :</STRONG></EM></FONT></P>
+		<P><font color="#ffffff" size="4"><em><strong>Mesh Modifiers :</strong></em></font><font color="#ffffff"><br>
+			</font><font color="#00aeae" size="4"><strong>.NoCull</strong></font><font color="#ffffff">
+				: Disables the backface culling. Useful for single-faced meshes.<br>
+			</font><font color="#00aeae" size="4"><strong>.NoDynaLight</strong></font><font color="#ffffff">
+				: Disables the effect of dynamic lighting.<br>
+			</font><font color="#00aeae" size="4"><strong>.Hide</strong></font><font color="#ffffff">
+				: Permanently hides a mesh from the scene. Useful for Meshe Modifier based 
+				layers.<br>
+			</font><font color="#00aeae" size="4"><strong>.NoFog</strong></font><font color="#ffffff">
+				: Disables the effect for scene fog.<br>
+			</font><font color="#00aeae" size="4"><strong>.Floor </strong></font><font color="#ffffff">
+				: Allows the floor to "Reflect". In fact, you must duplicate the objects to be 
+				mirrored by
+				<br>
+				rotating them by 180°.<br>
+			</font><font color="#00aeae" size="4"><strong>.Alpha </strong></font><font color="#ffffff">
+				: Meshe is alphablended<br>
+			</font><font color="#00aeae" size="4"><strong>.AlphaMap </strong></font><font color="#ffffff">
+				: Meshe contains an alpha channel in Texture.<BR>
+				<FONT color="#00aeae" size="4"><STRONG>.Sprite </STRONG><FONT color="#ffffff"><FONT size="3">
+							: Meshe</FONT> will always face the camera. Useful for planes intended to 
+						be sprites.</FONT></FONT> </font>
+		</P>
+		<P><FONT color="#ffffff">
+				<br>
+				<br>
+				<em>Note on AlphaMap flag :<br>
+				</em>The Specular component of the associated material is used as alpha map for 
+				the objects with this flag.<br>
+				If there is no specular map when specifying this flag, the Alpha Channel is 
+				ignored.<br>
+				The alpha map file name MUST contain the string "alpha" to be treated as alpha 
+				channel. (ie. : AlphaChan0.jpg)<br>
+				<br>
+			</FONT><font color="#00aeae" size="4"><strong>.Mirror</strong></font><font color="#ffffff">
+				: Meshe is a mirror (Should be a plane)<br>
+			</font><font color="#00aeae" size="4"><strong>.EnvMap</strong></font><font color="#ffffff">
+				: Meshe has envmap, must have two textures the second is the reflected one.<br>
+			</font><font color="#00aeae" size="4"><strong>.NoLight</strong></font><font color="#ffffff">
+				: Overrides the vertex color to full white.<br>
+			</font><font color="#00aeae" size="4"><strong>.MorphSrc.fX</strong> </font><font color="#ffffff">
+				: First object for morphing. X is the start frame.<br>
+			</font><font color="#00aeae" size="4"><strong>.MorphDest.fX.cY</strong></font><font color="#ffffff">
+				: Next object for morphing. X is the start frame. Y is the object count.<br>
+				<br>
+				<em>Notes on morping :</em><br>
+				The two objets MUST have the same number of vertices and the same prefixed 
+				name.<br>
+				<br>
+				<em>Example : </em>
+				<br>
+				Object 1 : "<em>Sphere01.MorphSrc.f0</em>"<br>
+				Object 2 : "<em>Sphere01.MorphDest.f100.c0</em>"<br>
+				Object 3 : "<em>Sphere01.MorphDest.f200.c1</em>"<br>
+				<br>
+				Object morphes from 'Object 1' to 'Object 2' through frame 0 to 100, then from 
+				'Object 2' to<br>
+				'Object 3' through frame 100 to 200.</font></P>
+		<p><font color="#00aeae" size="4"><strong>.RootLod.dX</strong></font><font color="#ffffff">
+				: Root mesh for LOD. X is the mininal activation distance<br>
+			</font><font color="#00aeae" size="4"><strong>.Lod.dX </strong></font><font color="#ffffff">
+				: Child meshe for Lod. X is the mininal activation distance</font></p>
+		<p><font color="#ffffff"><em>Notes on LOD :</em><br>
+				The different child meshes must have the same prefixed name.<br>
+				The parameter X is the where the level is activated (Mesh center&lt;-&gt;Camera 
+				distance)<br>
+				<br>
+				<em>Example :</em><br>
+				Object 1 : <em>"Sphere01.RootLod.d100"</em> <em>(Max details)</em><br>
+				Object 2 : <em>"Sphere01.Lod.d200"</em><br>
+				Object 3 : <em>"Sphere01.Lod.d300"</em><br>
+				Object 4 : <em>"Sphere01.Lod.d400" (Min details)</em><br>
+				<br>
+				In this example, the object #1 is the most detailed. Is it active when the 
+				distance between the center<br>
+				of the mesh and the camera position is below or equal to 100. Object #2 is 
+				active when distance is between<br>
+				100 and 200 and so on. If distance is over 400, the object #4 is active. 
+				Remember that the root object does not<br>
+				need to be the most detailed.</font></p>
+		<p>&nbsp;</p>
+		<p><font color="#ffffff" size="4"><em><strong>Light Modifiers :</strong></em></font></p>
+		<p><font color="#00aeae" size="4"><strong>.Halo.m"FileName"</strong></font><font color="#ffffff">
+				: Is a halo, Can have animation track. Must be an OmniLight and must have a 
+				texture map file.</font><font color="#00aeae" size="4"><strong><br>
+					.DynaLight</strong></font><font color="#ffffff" size="4"> </font><font color="#ffffff">
+				: Enables dynamic lighting for current light, Can have animation track, Must be 
+				an OmniLight<br>
+				<br>
+			</font>
+		</p>
+		<hr>
+		<P><font color="#00ff80" size="4"><em><FONT color="#00ff80" size="4"><EM>0106/2002:</EM></FONT><FONT color="#ffffff">
+						<EM>
+							<BR>
+							Yes, 2 years later :) anyway, some parts have disapeared (particles) due to 
+							inclusion in scripting engine.<BR>
+							Some common supported features from Max4 have been added.</EM></FONT></P>
+		</EM></FONT>
+		<P><FONT color="#00ff80" size="4"><EM>26/06/2000:</EM></FONT><font color="#ffffff"> <em>
+					<br>
+					This is the newest version of the engine. Some features have been 
+					changed/upgraded. All features have been re-written.</em></font></P>
+		<p><font color="#00ff80" size="4"><em>13/07/2000:</em></font><font color="#ffffff">
+				<br>
+				<em><strong>New features : </strong></em><em>
+					<br>
+					- .NoCull : Force independant object not to bu culled (Useful for single-faced 
+					meshes, to allow backface to be drawn)</em></font><br>
+			<font color="#ffffff">- <em>.NoDynaLight : Disables the effect of dynamic lights on 
+					meshes</em></font><br>
+			<font color="#ffffff">- <em>.Hide : Permanently hides an object. Useful for 
+					mesh-modifier based layers.<br>
+					- .NoFog : Disables the effect of the fog on meshes.<br>
+					- .Fog : Enables the fog for a whole scene</em></font></p>
+		<p><font color="#ffffff"><em><strong>Updated features :</strong></em><em><br>
+					- .Halo : Now allows to select the texture file.</em></font></p>
+	</body>
+</html>
